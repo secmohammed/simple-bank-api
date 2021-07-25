@@ -8,14 +8,14 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func createRandomAccount() (Account, error, *CreateAccountParams) {
+func createRandomAccount() (*Account, error, *CreateAccountParams) {
 	arg := CreateAccountParams{
 		Owner:    util.RandomOwner(),
 		Balance:  util.RandomMoney(),
 		Currency: util.RandomCurrency(),
 	}
 	account, err := testQueries.CreateAccount(context.Background(), arg)
-	return account, err, &arg
+	return &account, err, &arg
 }
 
 func TestCreateAccount(t *testing.T) {
